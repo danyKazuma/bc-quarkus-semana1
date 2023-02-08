@@ -1,4 +1,9 @@
 package com.bc.semana1.repository;
 
-public interface ClienteRepository {
+import com.bc.semana1.entity.Cliente;
+import io.quarkus.hibernate.orm.panache.kotlin.PanacheRepository;
+
+public interface ClienteRepository extends PanacheRepository<Cliente> {
+
+
 }
