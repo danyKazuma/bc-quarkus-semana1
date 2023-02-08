@@ -1,5 +1,6 @@
 package com.bc.semana1.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Operacion")
-public class Operacion {
+public class Operacion{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,12 +24,15 @@ public class Operacion {
     private LocalDateTime ldtFecha;
 
     @Column(name = "Descripcion")
-    private String descripcion;
+    private String sDescripcion;
 
     @Column(name = "Monto")
     private double dMonto;
 
     @Column(name = "NumeroCuenta")
     private String sNumeroCuenta;
+
+    @Column(name = "Estado")
+    private boolean bEstado;
 
 }

@@ -1,7 +1,7 @@
 package com.bc.semana1.entity;
 
 
-import io.quarkus.hibernate.orm.panache.kotlin.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity(name="cliente")
@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Cliente")
-public class Cliente extends PanacheEntity {
+public class Cliente{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
