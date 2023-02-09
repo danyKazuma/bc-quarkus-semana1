@@ -1,8 +1,12 @@
 package com.bc.semana1.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDate;
+
 @Entity(name="cliente")
 @Data
 @NoArgsConstructor
@@ -18,7 +22,8 @@ public class Cliente{
     public String apellidoP;
     public String tipoDocumento;
     public String numeroDocumento;
-    public String fechaDeNacimiento; //limite a partir de los 18 años
-    public boolean estado; //en caso de penalizacion de credito, desactivar cuenta
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    public LocalDate fechaDeNacimiento;
+    public boolean estado;
 
 }

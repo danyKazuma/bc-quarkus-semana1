@@ -27,4 +27,7 @@ public class ClienteResource {
 
     @DELETE
     public boolean borrarCliente(Cliente cliente){ return clienteService.borrarCliente(cliente); }
+
+//    @GET
+//    public boolean buscarClientePorDocumento(@QueryParam("clienteDocumento") String clienteDocumento){ return clienteService.buscarClientePorDocumento(clienteDocumento); }
 }
