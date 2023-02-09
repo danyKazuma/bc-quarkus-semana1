@@ -22,7 +22,7 @@ public class TarjetaDebito {
     @Column(name = "CuentaPrincipal")
     private String sCuentaPrincipal;
     @Column(name = "CuentaSecundaria")
-    private List<String> sCuentaSecundaria;
+    private String sCuentaSecundaria;
     @Column(name = "FechaVencimiento")
     private LocalDate ldtFechaVencimiento;
     @Column(name = "PIN")

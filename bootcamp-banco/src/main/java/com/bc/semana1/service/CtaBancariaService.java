@@ -14,4 +14,6 @@ public interface CtaBancariaService {
 
     public CtaBancaria buscarCtaBancaria(String numCtaBancaria);
 
+    public String eliminarCtaBancaria(CtaBancaria ctaBancaria);
+
 }

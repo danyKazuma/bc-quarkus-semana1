@@ -5,6 +5,7 @@ import com.bc.semana1.repository.CtaBancariaRepository;
 import com.bc.semana1.service.CtaBancariaService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -15,22 +16,42 @@ public class CtaBancariaServiceImpl implements CtaBancariaService {
     CtaBancariaRepository repository;
 
     @Override
+    @Transactional
     public String registrarCtaBancaria(CtaBancaria ctaBancaria) {
-        return null;
+
+        boolean clienteRegistrado = true;
+
+        if(clienteRegistrado){
+            repository.persist(ctaBancaria);
+            return "Registro de CtaBancaria Satisfactorio";
+        }
+
+        return "Cliente no encontrado";
     }
 
     @Override
+    @Transactional
     public String actualizarCtaBancaria(CtaBancaria ctaBancaria) {
-        return null;
+        repository.persistAndFlush(ctaBancaria);
+        return "Actualizacion realizada";
     }
 
     @Override
     public List<CtaBancaria> listarCtaBancariaCliente(String numDocumentoCliente) {
-        return null;
+        return repository.findByCliente(numDocumentoCliente);
     }
 
     @Override
     public CtaBancaria buscarCtaBancaria(String numCtaBancaria) {
-        return null;
+        return repository.findByNumCtaBancaria(numCtaBancaria);
     }
+
+    @Override
+    @Transactional
+    public String eliminarCtaBancaria(CtaBancaria ctaBancaria) {
+        ctaBancaria.setEstado(false);
+        repository.persistAndFlush(ctaBancaria);
+        return "Cta bancaria eliminada";
+    }
+
 }
