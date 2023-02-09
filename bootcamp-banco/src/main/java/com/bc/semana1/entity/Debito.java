@@ -13,14 +13,9 @@ import lombok.NoArgsConstructor;
 public class Debito {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
-    private Long lId;
-    @Column(name = "SaldoActual")
-    private Long lSaldoActual;
-    @Column(name = "CuentaPrincipal")
-    private String sCuentaPrincipal;
-    @Column(name = "CuentaSecundaria")
-    private String sCuentaSecundaria;
-    @Column(name = "Estado")
-    private boolean bEstado;
+    private Long id;
+    private Long saldoActual;
+    private String cuentaPrincipal;
+    private String cuentaSecundaria;
+    private boolean estado;
 }

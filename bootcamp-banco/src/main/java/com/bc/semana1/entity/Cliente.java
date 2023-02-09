@@ -1,7 +1,6 @@
 package com.bc.semana1.entity;
 
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity(name="cliente")
@@ -13,23 +12,13 @@ public class Cliente{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="Id")
-    public Long lId;
-    @Column(name="Nombre")
-    public String sNombre;
-    @Column(name="ApellidoM")
-    public String sApellidoM;
-    @Column(name="ApellidoP")
-    public String sApellidoP;
-    @Column(name="TipoDocumento")
-    public String sTipoDocumento;
-    @Column(name="NumeroDocumento")
-    public String sNumeroDocumento;
-    @Column(name="RUC")
-    public String sRuc;
-    @Column(name="FechaDeNacimiento")
-    public String sFechaDeNacimiento; //limite a partir de los 18 años
-    @Column(name="Estado")
-    public String sEstado; //en caso de penalizacion de credito, desactivar cuenta
+    public Long id;
+    public String nombre;
+    public String apellidoM;
+    public String apellidoP;
+    public String tipoDocumento;
+    public String numeroDocumento;
+    public String fechaDeNacimiento; //limite a partir de los 18 años
+    public boolean estado; //en caso de penalizacion de credito, desactivar cuenta
 
 }

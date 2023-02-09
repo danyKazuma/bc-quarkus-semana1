@@ -3,16 +3,16 @@ package com.bc.semana1.service.impl;
 import com.bc.semana1.entity.Cliente;
 import com.bc.semana1.repository.ClienteRepository;
 
+import com.bc.semana1.service.ClienteService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.WebApplicationException;
 
 import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
-public class ClienteServiceImpl {
+public class ClienteServiceImpl implements ClienteService {
 
     @Inject
     ClienteRepository clienteRepository;
@@ -29,7 +29,7 @@ public class ClienteServiceImpl {
 
     @Transactional
     public String buscarCLiente(Cliente cliente){
-        Cliente findCliente = clienteRepository.findById(cliente.getLId());
+        Cliente findCliente = clienteRepository.findById(cliente.getId());
         if(findCliente!=null){
             clienteRepository.persistAndFlush(cliente);
         }else{
@@ -39,20 +39,24 @@ public class ClienteServiceImpl {
     }
 
     @Transactional
-    public boolean borrarCliente(Cliente cliente){ return clienteRepository.deleteById(cliente.getLId()); }
+    public boolean borrarCliente(Cliente cliente){ return clienteRepository.deleteById(cliente.getId()); }
 
     @Transactional
-    public Cliente actualizarCliente(String id,Cliente cliente){
+    public Cliente actualizarCliente(Cliente cliente){
 
-        Cliente actualizar = clienteRepository.findById(cliente.getLId());
+        Cliente actualizar = clienteRepository.findById(cliente.getId());
         if (actualizar==null){
-            throw new WebApplicationException("Cliente con el id " + id + " no existe.", 404);
+            throw new WebApplicationException("Cliente con el id " + cliente.getId() + " no existe.", 404);
         }
-        if(cliente.sNombre!=null) actualizar.sNombre=cliente.getSNombre();
-        if(cliente.sApellidoP!=null) actualizar.sApellidoP=cliente.getSApellidoP();
-        if(cliente.sApellidoM!=null) actualizar.sApellidoM=cliente.getSApellidoM();
-        if(cliente.sNumeroDocumento!=null) actualizar.sNumeroDocumento=cliente.getSNumeroDocumento();
-        if(cliente.sEstado!=null) actualizar.sEstado=cliente.getSEstado();
+
+        if(cliente.estado){
+            if(cliente.nombre!=null) actualizar.nombre=cliente.getNombre();
+            if(cliente.apellidoP!=null) actualizar.apellidoP=cliente.getApellidoP();
+            if(cliente.apellidoM!=null) actualizar.apellidoM=cliente.getApellidoM();
+            if(cliente.numeroDocumento!=null) actualizar.numeroDocumento=cliente.getNumeroDocumento();
+        }else{
+            throw new WebApplicationException("Cliente deshabilitado");
+        }
 
         return actualizar;
 

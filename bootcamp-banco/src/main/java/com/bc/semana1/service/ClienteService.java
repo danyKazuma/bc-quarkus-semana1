@@ -8,6 +8,6 @@ public interface ClienteService {
 
     String insertarCliente(Cliente cliente);
     List<Cliente> listarCliente();
-    String actualizarCliente(Cliente cliente);
-    String borrarCliente(Cliente cliente);
+    Cliente actualizarCliente(Cliente cliente);
+    boolean borrarCliente(Cliente cliente);
 }

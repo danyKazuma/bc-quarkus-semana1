@@ -1,6 +1,5 @@
 package com.bc.semana1.service;
 
-import com.bc.semana1.entity.CtaBancaria;
 import com.bc.semana1.entity.TarjetaDebito;
 
 import java.util.List;

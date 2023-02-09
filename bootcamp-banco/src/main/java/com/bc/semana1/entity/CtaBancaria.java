@@ -13,15 +13,10 @@ import lombok.NoArgsConstructor;
 public class CtaBancaria {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "Id")
     private Long id;
-//    @Column(name = "Cliente")
     private String cliente;
-//    @Column(name = "CuentaBancaria")
     private String cuentaBancaria;
-//    @Column(name = "SaldoActual")
     private double saldoActual;
-//    @Column(name = "Estado")
     private boolean estado;
 
 }

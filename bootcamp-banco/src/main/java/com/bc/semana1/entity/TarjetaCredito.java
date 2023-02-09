@@ -15,22 +15,13 @@ public class TarjetaCredito {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
-    private Long lId;
-    @Column(name = "NumeroTarjeta")
-    private String sNumeroTarjeta;
-    @Column(name = "PIN")
-    private String sPin;
-    @Column(name = "CVV")
-    private String sCvv;
-    @Column(name = "FechaCorte")
-    private LocalDateTime ldtFechaCorte;
-    @Column(name = "FechaVencimiento")
-    private LocalDateTime ldtFechaVencimiento;
-    @Column(name = "SaldoActual")
-    private double dSaldoActual;
-    @Column(name = "LimiteCredito")
-    private double dLimiteCredito;
-    @Column(name = "Estado")
-    private boolean bEstado;
+    private Long id;
+    private String numeroTarjeta;
+    private String pin;
+    private String cvv;
+    private LocalDateTime fechaCorte;
+    private LocalDateTime fechaVencimiento;
+    private double saldoActual;
+    private double limiteCredito;
+    private boolean estado;
 }

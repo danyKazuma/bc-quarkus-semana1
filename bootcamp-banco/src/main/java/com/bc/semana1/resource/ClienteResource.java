@@ -23,8 +23,8 @@ public class ClienteResource {
     public String registrarCliente(Cliente cliente){ return clienteService.insertarCliente(cliente); }
 
     @PUT
-    public String actualizarCliente(Cliente cliente) { return clienteService.actualizarCliente(cliente); }
+    public Cliente actualizarCliente(Cliente cliente) { return clienteService.actualizarCliente(cliente); }
 
     @DELETE
-    public String borrarCliente(Cliente cliente){ return clienteService.borrarCliente(cliente); }
+    public boolean borrarCliente(Cliente cliente){ return clienteService.borrarCliente(cliente); }
 }
