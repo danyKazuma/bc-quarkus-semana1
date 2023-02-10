@@ -41,13 +41,22 @@ public class OperacionServiceImpl implements OperacionService {
     @Override
     @Transactional
     public String actualizarOperacion(Operacion operacion) {
-        Operacion findOperacion = repository.findById(operacion.getId());
+        Operacion ope  = Operacion.findById(operacion.id);
+        ope.setNumeroCuenta(operacion.getNumeroCuenta());
+        Operacion.persist(ope);
+        return "";
+
+
+
+
+       /* Operacion findOperacion = repository.findById(operacion.getId());
+        repository.persist(findOperacion,operacion);
 
         if(findOperacion!=null){
             repository.persistAndFlush(operacion);
         }else{
             return "Operacion no encontrada";
         }
-        return "Operacion actualizada";
+        return "Operacion actualizada";*/
     }
 }

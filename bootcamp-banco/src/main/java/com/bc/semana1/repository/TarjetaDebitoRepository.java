@@ -6,4 +6,9 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class TarjetaDebitoRepository implements PanacheRepository<TarjetaDebito> {
+
+    public TarjetaDebito buscarTarjetaDebitoPorCtaPrincipal(String ctaPrincipal){
+        return find("cuentaPrincipal",ctaPrincipal).firstResult();
+    }
+
 }
