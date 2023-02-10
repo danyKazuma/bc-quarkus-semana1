@@ -2,12 +2,13 @@ package com.bc.semana1.service.impl;
 
 import com.bc.semana1.entity.TarjetaCredito;
 import com.bc.semana1.repository.TarjetaCreditoRepository;
+import com.bc.semana1.service.TarjetaCreditoService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
-import java.util.List;
-
-public class TarjetaCreditoServiceImpl {
+@ApplicationScoped
+public class TarjetaCreditoServiceImpl implements TarjetaCreditoService {
 
     @Inject
     TarjetaCreditoRepository tarjetaCreditoRepository;
@@ -17,6 +18,11 @@ public class TarjetaCreditoServiceImpl {
         return "Registro satisfactorio";
     }
 
+    @Override
+    public boolean estadoTarjetaCredito(TarjetaCredito tarjetaCredito) {
+        return false;
+    }
+
     @Transactional
     public String consultaCliente(TarjetaCredito tarjetaCredito){
         tarjetaCreditoRepository.findById(tarjetaCredito.getId());
@@ -24,9 +30,9 @@ public class TarjetaCreditoServiceImpl {
     }
 
     @Transactional
-    public List<TarjetaCredito> consultaSaldo(TarjetaCredito tarjetaCredito){
+    public String consultaSaldo(TarjetaCredito tarjetaCredito){
         tarjetaCreditoRepository.findById((long) tarjetaCredito.getSaldoActual());
-        return tarjetaCreditoRepository.listAll();
+        return tarjetaCreditoRepository.listAll().toString();
 
     }
 
