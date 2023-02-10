@@ -3,10 +3,12 @@ package com.bc.semana1.service.impl;
 import com.bc.semana1.entity.TarjetaDebito;
 import com.bc.semana1.repository.TarjetaDebitoRepository;
 import com.bc.semana1.service.TarjetaDebitoService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class TarjetaDebitoServiceImpl implements TarjetaDebitoService {
 
     @Inject
@@ -14,12 +16,22 @@ public class TarjetaDebitoServiceImpl implements TarjetaDebitoService {
 
     @Override
     public String registrarTarjetaDebito(TarjetaDebito tarjetaDebito) {
-        return null;
+
+//        boolean cuentaRegistrada = ctaBancariaService.buscarCtaBancaria(tarjetaDebito.getCuentaPrincipal());
+        boolean cuentaRegistrada = true;
+
+        if(cuentaRegistrada){
+            repository.persist(tarjetaDebito);
+            return "Registro de tarjeta debito satisfactorio";
+        }
+
+        return "Cta no encontrada";
     }
 
     @Override
     public String actualizarTarjetaDebito(TarjetaDebito tarjetaDebito) {
-        return null;
+        repository.persistAndFlush(tarjetaDebito);
+        return "Tarjeta de Debito aactualizada";
     }
 
     @Override

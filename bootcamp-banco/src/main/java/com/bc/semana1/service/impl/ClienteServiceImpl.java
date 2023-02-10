@@ -29,10 +29,10 @@ public class ClienteServiceImpl implements ClienteService {
     public List<Cliente> listarCliente(){ return clienteRepository.listAll(); }
 
 //    @Transactional
-//    public boolean buscarClientePorDocumento(String clienteDocumento){
-//        Cliente findCliente = clienteRepository.findByDocumentoCliente(clienteDocumento);
-//        return findCliente != null;
-//    }
+    public boolean buscarClientePorDocumento(String clienteDocumento){
+        Cliente findCliente = clienteRepository.findByDocumentoCliente(clienteDocumento);
+        return findCliente != null;
+    }
 
     @Transactional
     public boolean borrarCliente(Cliente cliente){ return clienteRepository.deleteById(cliente.getId()); }

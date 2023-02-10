@@ -21,7 +21,8 @@ public class TarjetaCreditoResource {
     public String consultaSaldo(TarjetaCredito tarjetaCredito){
         return  tarjetaCreditoService.consultaSaldo(tarjetaCredito);
     }
-    @GET
+    @POST
+    @Path("/consultaCliente")
     public String consultaCliente(TarjetaCredito tarjetaCredito){
         return tarjetaCreditoService.consultaCliente(tarjetaCredito);
     }

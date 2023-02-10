@@ -10,7 +10,7 @@ import java.util.List;
 public class CtaBancariaRepository implements PanacheRepository<CtaBancaria> {
 
     public List<CtaBancaria> findByCliente(String numDocumentoCliente){
-        return list("sCliente", numDocumentoCliente);
+        return list("cliente", numDocumentoCliente);
     }
 
     public CtaBancaria findByNumCtaBancaria(String numCtaBancaria){
