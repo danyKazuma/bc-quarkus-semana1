@@ -2,6 +2,7 @@ package com.bc.semana1.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,11 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Cliente")
-public class Cliente{
+public class Cliente extends PanacheEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
     public String nombre;
     public String apellidoM;
     public String apellidoP;

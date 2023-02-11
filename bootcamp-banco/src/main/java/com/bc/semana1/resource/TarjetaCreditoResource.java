@@ -6,24 +6,32 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import com.bc.semana1.service.TarjetaCreditoService;
 
+import java.util.List;
+
 @Path("/tarjetacredito")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TarjetaCreditoResource {
     @Inject
-    TarjetaCreditoService tarjetaCreditoService;
+    private TarjetaCreditoService service;
 
     @POST
-    public String registrarTarjetaDebito(TarjetaCredito tarjetaCredito){
-        return tarjetaCreditoService.registrarTarjetaCredito(tarjetaCredito);
+    public TarjetaCredito registrarTarjetaDebito(TarjetaCredito tarjetaCredito){
+        return service.registrarTarjetaCredito(tarjetaCredito);
     }
     @GET
-    public String consultaSaldo(TarjetaCredito tarjetaCredito){
-        return  tarjetaCreditoService.consultaSaldo(tarjetaCredito);
+    public TarjetaCredito consultaSaldoTarjetaCredito(@QueryParam("numeroTarjetaCredito") String numeroTarjetaCredito){
+        return  service.consultaSaldoTarjetaCredito(numeroTarjetaCredito);
     }
-    @POST
-    @Path("/consultaCliente")
-    public String consultaCliente(TarjetaCredito tarjetaCredito){
-        return tarjetaCreditoService.consultaCliente(tarjetaCredito);
+    @GET
+    @Path("/consultacliente")
+    public List<TarjetaCredito> consultaCliente(@QueryParam("numDocumentoCliente") String numDocumentoCliente){
+        return service.consultaCliente(numDocumentoCliente);
+    }
+
+    @DELETE
+    @Path("{numeroTarjetaCredito}")
+    public void eliminarTarjetaCredito(@PathParam("numeroTarjetaCredito") String numeroTarjetaCredito){
+        service.eliminarTarjetaCredito(numeroTarjetaCredito);
     }
 }

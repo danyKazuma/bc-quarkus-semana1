@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface ClienteService {
 
-    String insertarCliente(Cliente cliente);
+    Cliente insertarCliente(Cliente cliente);
     List<Cliente> listarCliente();
     Cliente actualizarCliente(Cliente cliente);
-    boolean borrarCliente(Cliente cliente);
-    boolean buscarClientePorDocumento(String clienteDocumento);
+    void borrarCliente(Long idCliente);
+    Cliente buscarClientePorDocumento(String clienteDocumento);
 
 }

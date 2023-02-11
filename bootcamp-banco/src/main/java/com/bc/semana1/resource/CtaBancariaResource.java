@@ -17,7 +17,7 @@ public class CtaBancariaResource {
     private CtaBancariaService ctaBancariaService;
 
     @POST
-    public String registrarCtaBancaria(CtaBancaria ctaBancaria){
+    public CtaBancaria registrarCtaBancaria(CtaBancaria ctaBancaria){
         return ctaBancariaService.registrarCtaBancaria(ctaBancaria);
     }
 
@@ -34,14 +34,14 @@ public class CtaBancariaResource {
     }
 
     @PUT
-    public String actualizarCtaBancaria(CtaBancaria ctaBancaria) {
+    public CtaBancaria actualizarCtaBancaria(CtaBancaria ctaBancaria) {
         return ctaBancariaService.actualizarCtaBancaria(ctaBancaria);
     }
 
     @DELETE
-    public String eliminarCtaBancaria(String numCtaBancaria){
+    public void eliminarCtaBancaria(@QueryParam("numCtaBancaria") String numCtaBancaria){
         CtaBancaria ctaBancaria= ctaBancariaService.buscarCtaBancaria(numCtaBancaria);
-        return ctaBancariaService.eliminarCtaBancaria(ctaBancaria);
+        ctaBancariaService.eliminarCtaBancaria(ctaBancaria);
     }
 
 }

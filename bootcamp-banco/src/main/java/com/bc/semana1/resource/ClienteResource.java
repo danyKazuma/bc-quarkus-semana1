@@ -20,14 +20,13 @@ public class ClienteResource {
     public List<Cliente> listarCliente(){ return clienteService.listarCliente(); }
 
     @POST
-    public String registrarCliente(Cliente cliente){ return clienteService.insertarCliente(cliente); }
+    public Cliente registrarCliente(Cliente cliente){ return clienteService.insertarCliente(cliente); }
 
     @PUT
     public Cliente actualizarCliente(Cliente cliente) { return clienteService.actualizarCliente(cliente); }
 
     @DELETE
-    public boolean borrarCliente(Cliente cliente){ return clienteService.borrarCliente(cliente); }
+    @Path("{idCliente}")
+    public void borrarCliente(@PathParam("idCliente") String idCliente){ clienteService.borrarCliente(Long.parseLong(idCliente)); }
 
-//    @GET
-//    public boolean buscarClientePorDocumento(@QueryParam("clienteDocumento") String clienteDocumento){ return clienteService.buscarClientePorDocumento(clienteDocumento); }
 }

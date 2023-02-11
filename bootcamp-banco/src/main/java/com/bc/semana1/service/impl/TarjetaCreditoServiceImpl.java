@@ -1,39 +1,46 @@
 package com.bc.semana1.service.impl;
 
 import com.bc.semana1.entity.TarjetaCredito;
-import com.bc.semana1.repository.TarjetaCreditoRepository;
 import com.bc.semana1.service.TarjetaCreditoService;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
+import java.util.List;
+import java.util.Random;
 
 @ApplicationScoped
 public class TarjetaCreditoServiceImpl implements TarjetaCreditoService {
 
-    @Inject
-    TarjetaCreditoRepository tarjetaCreditoRepository;
-    @Transactional
-    public String registrarTarjetaCredito(TarjetaCredito tarjetaCredito){
-        tarjetaCreditoRepository.persist(tarjetaCredito);
-        return "Registro satisfactorio";
+    @Override
+    public TarjetaCredito consultaSaldoTarjetaCredito(String numeroTarjetaCredito) {
+        TarjetaCredito tarjetaCredito = TarjetaCredito.find("numeroTarjeta=?1 and estado=true",numeroTarjetaCredito).firstResult();
+        return tarjetaCredito;
     }
 
     @Override
-    public boolean estadoTarjetaCredito(TarjetaCredito tarjetaCredito) {
-        return false;
+    public List<TarjetaCredito> consultaCliente(String numDocumentoCliente) {
+        return TarjetaCredito.list("cliente=?1 and estado=true", numDocumentoCliente);
     }
 
+    @Override
     @Transactional
-    public String consultaCliente(TarjetaCredito tarjetaCredito){
-        tarjetaCreditoRepository.findById(tarjetaCredito.getId());
-        return "Registro encontrado";
+    public TarjetaCredito registrarTarjetaCredito(TarjetaCredito tarjetaCredito) {
+
+        Random r = new Random();
+        int cantidad = r.nextInt(900000000) + 10000;
+        String randomValue = "7856777"+cantidad;
+
+        tarjetaCredito.setNumeroTarjeta(randomValue);
+        tarjetaCredito.setEstado(true);
+        TarjetaCredito.persist(tarjetaCredito);
+        return tarjetaCredito;
     }
 
+    @Override
     @Transactional
-    public String consultaSaldo(TarjetaCredito tarjetaCredito){
-        tarjetaCreditoRepository.findById((long) tarjetaCredito.getSaldoActual());
-        return tarjetaCreditoRepository.listAll().toString();
-
+    public void eliminarTarjetaCredito(String numeroTarjetaCredito) {
+        TarjetaCredito tarjetaCredito = TarjetaCredito.find("numeroTarjeta",numeroTarjetaCredito).firstResult();
+        tarjetaCredito.setEstado(false);
+        TarjetaCredito.persist(tarjetaCredito);
     }
-
 }

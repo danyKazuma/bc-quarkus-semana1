@@ -1,12 +1,14 @@
 package com.bc.semana1.service.impl;
 
+import com.bc.semana1.entity.Cliente;
 import com.bc.semana1.entity.CtaBancaria;
-import com.bc.semana1.repository.CtaBancariaRepository;
 import com.bc.semana1.service.ClienteService;
 import com.bc.semana1.service.CtaBancariaService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
@@ -14,48 +16,51 @@ import java.util.List;
 public class CtaBancariaServiceImpl implements CtaBancariaService {
 
     @Inject
-    CtaBancariaRepository repository;
-
-    @Inject
     ClienteService clienteService;
 
     @Override
     @Transactional
-    public String registrarCtaBancaria(CtaBancaria ctaBancaria) {
+    public CtaBancaria registrarCtaBancaria(CtaBancaria ctaBancaria) {
 
-        boolean clienteRegistrado = clienteService.buscarClientePorDocumento(ctaBancaria.getCliente());
+        Cliente clienteRegistrado = clienteService.buscarClientePorDocumento(ctaBancaria.getCliente());
 
-        if(clienteRegistrado){
-            repository.persist(ctaBancaria);
-            return "Registro de CtaBancaria Satisfactorio";
+        if(clienteRegistrado.isEstado()){
+            CtaBancaria.persist(ctaBancaria);
+            return ctaBancaria;
         }
-
-        return "Cliente no encontrado";
+        throw new WebApplicationException(Response.Status.NO_CONTENT);
     }
 
     @Override
     @Transactional
-    public String actualizarCtaBancaria(CtaBancaria ctaBancaria) {
-        repository.persistAndFlush(ctaBancaria);
-        return "Actualizacion realizada";
+    public CtaBancaria actualizarCtaBancaria(CtaBancaria ctaBancaria) {
+        try{
+            CtaBancaria cta=CtaBancaria.findById(ctaBancaria.id);
+            cta.setCuentaBancaria(cta.getCuentaBancaria());
+            cta.setSaldoActual(ctaBancaria.getSaldoActual());
+            CtaBancaria.persist(cta);
+            return cta;
+        }catch (Exception ex){
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
     }
 
     @Override
     public List<CtaBancaria> listarCtaBancariaCliente(String numDocumentoCliente) {
-        return repository.findByCliente(numDocumentoCliente);
+        return CtaBancaria.list("cliente",numDocumentoCliente);
     }
 
     @Override
     public CtaBancaria buscarCtaBancaria(String numCtaBancaria) {
-        return repository.findByNumCtaBancaria(numCtaBancaria);
+        return CtaBancaria.find("cuentaBancaria",numCtaBancaria).firstResult();
     }
 
     @Override
     @Transactional
-    public String eliminarCtaBancaria(CtaBancaria ctaBancaria) {
-        ctaBancaria.setEstado(false);
-        repository.persistAndFlush(ctaBancaria);
-        return "Cta bancaria eliminada";
+    public void eliminarCtaBancaria(CtaBancaria ctaBancaria) {
+        CtaBancaria cta = CtaBancaria.findById(ctaBancaria.id);
+        cta.setEstado(false);
+        CtaBancaria.persist(cta);
     }
 
 }

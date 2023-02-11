@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "155251be-c78b-4c05-a0fe-02c5b79744bb",
+		"name": "BancoSemana1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CLIENTE",
+			"item": [
+				{
+					"name": "ListarTodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"teesttt\",\r\n    \"apellidoP\":\"Segundo\",\r\n    \"apellidoM\":\"Tercero\",\r\n    \"tipoDocumento\":\"DNI\",\r\n    \"numeroDocumento\":\"12345699\",\r\n    \"fechaDeNacimiento\":\"10-10-2001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarDatos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"nombre\": \"Quarkus\",\r\n    \"apellidoM\": \"Tercero\",\r\n    \"apellidoP\": \"Segundo\",\r\n    \"tipoDocumento\": \"DNI\",\r\n    \"numeroDocumento\": \"12345678\",\r\n    \"fechaDeNacimiento\": \"11-11-2001\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/cliente",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/cliente/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"cliente",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CTA BANCARIA",
+			"item": [
+				{
+					"name": "BuscarPorNumCuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/ctabancaria/cta?numCtaBancaria=1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ctabancaria",
+								"cta"
+							],
+							"query": [
+								{
+									"key": "numCtaBancaria",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"estado\": true,\r\n    \"saldoActual\": 150.0,\r\n    \"cliente\": \"12345678\",\r\n    \"cuentaBancaria\": \"5678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/ctabancaria",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ctabancaria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarPorCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/ctabancaria/cliente?documentoCliente=12345678",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ctabancaria",
+								"cliente"
+							],
+							"query": [
+								{
+									"key": "documentoCliente",
+									"value": "12345678"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarPorNumCuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/ctabancaria?numCtaBancaria=1234",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"ctabancaria"
+							],
+							"query": [
+								{
+									"key": "numCtaBancaria",
+									"value": "1234"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TARJ DEBITO",
+			"item": [
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"saldoActual\": 100,\r\n    \"cuentaPrincipal\": \"1234\",\r\n    \"cuentaSecundaria\": null,\r\n    \"fechaVencimiento\": \"01-12-2026\",\r\n    \"pin\": \"7869\",\r\n    \"cvv\": \"089\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/tarjetadebito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetadebito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarPorTarjetasPorCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/tarjetadebito?numDocCliente=12345678",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetadebito"
+							],
+							"query": [
+								{
+									"key": "numDocCliente",
+									"value": "12345678"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ActualizarTarjetaDebito",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"numeroTarjeta\": \"1006090443790808\",\r\n    \"saldoActual\": 100.0,\r\n    \"cuentaPrincipal\": \"1234\",\r\n    \"cuentaSecundaria\": \"5678\",\r\n    \"fechaVencimiento\": \"01-12-2026\",\r\n    \"pin\": \"7869\",\r\n    \"cvv\": \"089\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/tarjetadebito",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetadebito"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OPERACION",
+			"item": [
+				{
+					"name": "ListarTodas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/operacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"operacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\":\"ABONO\",\r\n    \"monto\":100,\r\n    \"numeroCuento\":\"9999990055\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/operacion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"operacion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"fecha\": \"2023-02-10T16:18:27.57808\",\r\n    \"descripcion\": \"ABONO\",\r\n    \"monto\": 100.0,\r\n    \"numeroCuenta\": \"1111\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/operacion",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"operacion"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TARJ CREDITO",
+			"item": [
+				{
+					"name": "Registar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pin\": \"1324\",\r\n    \"cvv\": \"675\",\r\n    \"fechaCorte\": \"01-12-2022\",\r\n    \"fechaVencimiento\": \"01-12-2028\",\r\n    \"saldoActual\": 3000,\r\n    \"limiteCredito\": 3000,\r\n    \"cliente\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8090/tarjetacredito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetacredito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListarPorCliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/tarjetacredito/consultacliente?numDocumentoCliente=12345678",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetacredito",
+								"consultacliente"
+							],
+							"query": [
+								{
+									"key": "numDocumentoCliente",
+									"value": "12345678"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarPorNumTarjetaCredito",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/tarjetacredito?numeroTarjetaCredito=785677727177729",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetacredito"
+							],
+							"query": [
+								{
+									"key": "numeroTarjetaCredito",
+									"value": "785677727177729"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/tarjetacredito/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"tarjetacredito",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CREDITO",
+			"item": []
+		}
+	]
+}

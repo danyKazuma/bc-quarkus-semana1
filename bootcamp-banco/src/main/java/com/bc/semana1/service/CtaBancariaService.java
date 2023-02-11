@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface CtaBancariaService {
 
-    public String registrarCtaBancaria(CtaBancaria ctaBancaria);
+    public CtaBancaria registrarCtaBancaria(CtaBancaria ctaBancaria);
 
-    public String actualizarCtaBancaria(CtaBancaria ctaBancaria);
+    public CtaBancaria actualizarCtaBancaria(CtaBancaria ctaBancaria);
 
     public List<CtaBancaria> listarCtaBancariaCliente(String numDocumentoCliente);
 
     public CtaBancaria buscarCtaBancaria(String numCtaBancaria);
 
-    public String eliminarCtaBancaria(CtaBancaria ctaBancaria);
+    public void eliminarCtaBancaria(CtaBancaria ctaBancaria);
 
 }

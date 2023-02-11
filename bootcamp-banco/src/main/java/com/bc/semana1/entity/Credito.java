@@ -1,5 +1,6 @@
 package com.bc.semana1.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,11 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="Credito")
-public class Credito {
+public class Credito extends PanacheEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private LocalDate fechaVencimiento;
     private double limiteCredito;
     private Integer cuotas;

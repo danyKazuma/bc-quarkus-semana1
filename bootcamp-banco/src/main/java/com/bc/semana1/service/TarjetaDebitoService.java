@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface TarjetaDebitoService {
 
-    public String registrarTarjetaDebito(TarjetaDebito tarjetaDebito);
+    public TarjetaDebito registrarTarjetaDebito(TarjetaDebito tarjetaDebito);
 
-    public String actualizarTarjetaDebito(TarjetaDebito tarjetaDebito);
+    public TarjetaDebito actualizarTarjetaDebito(TarjetaDebito tarjetaDebito);
 
     public List<TarjetaDebito> listarTarjetaDebito(String documentoIdentidad);
 
-    public String eliminarTarjetaDebito(String documentoIdentidad, String numTarjetaDebito);
+    public void eliminarTarjetaDebito(TarjetaDebito tarjetaDebito);
 
 }

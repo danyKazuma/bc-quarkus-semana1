@@ -18,12 +18,12 @@ public class TarjetaDebitoResource {
 
 
     @POST
-    public String registrarTarjetaDebito(TarjetaDebito tarjetaDebito){
+    public TarjetaDebito registrarTarjetaDebito(TarjetaDebito tarjetaDebito){
         return service.registrarTarjetaDebito(tarjetaDebito);
     }
 
     @PUT
-    public String actualizarTarjetaDebito(TarjetaDebito tarjetaDebito){
+    public TarjetaDebito actualizarTarjetaDebito(TarjetaDebito tarjetaDebito){
         return service.actualizarTarjetaDebito(tarjetaDebito);
     }
 

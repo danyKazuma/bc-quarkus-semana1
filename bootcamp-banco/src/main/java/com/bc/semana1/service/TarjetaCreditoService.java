@@ -1,10 +1,13 @@
 package com.bc.semana1.service;
 
 import com.bc.semana1.entity.TarjetaCredito;
+
+import java.util.List;
+
 public interface TarjetaCreditoService {
 
-    String consultaSaldo(TarjetaCredito tarjetaCredito);
-    String consultaCliente(TarjetaCredito tarjetaCredito);
-    String registrarTarjetaCredito(TarjetaCredito tarjetaCredito);
-    boolean estadoTarjetaCredito(TarjetaCredito tarjetaCredito);
+    TarjetaCredito consultaSaldoTarjetaCredito(String numeroTarjetaCredito);
+    List<TarjetaCredito> consultaCliente(String numDocumentoCliente);
+    TarjetaCredito registrarTarjetaCredito(TarjetaCredito tarjetaCredito);
+    void eliminarTarjetaCredito(String numeroTarjetaCredito);
 }

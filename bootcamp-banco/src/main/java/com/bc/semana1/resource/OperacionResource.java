@@ -22,13 +22,20 @@ public class OperacionResource {
     }
 
     @POST
-    public String registrarOperacion(Operacion operacion){
+    public Operacion registrarOperacion(Operacion operacion){
         return operacionService.insertarOperacion(operacion);
     }
 
     @PUT
-    public String deshabilitarOperacion(Operacion operacion){
-        return operacionService.actualizarOperacion(operacion);
+    public void actualizarOperacion(Operacion operacion){
+        operacionService.actualizarOperacion(operacion);
     }
+
+    @DELETE
+    @Path("{idOperacion}")
+    public void deshabilitarOperacion(@PathParam("idOperacion") String idOperacion){
+        operacionService.eliminarOperacion(Long.parseLong(idOperacion));
+    }
+
 
 }

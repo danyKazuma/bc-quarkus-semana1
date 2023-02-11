@@ -15,9 +15,6 @@ import java.time.LocalDateTime;
 @Table(name = "Operacion")
 public class Operacion extends PanacheEntity {
 
-////    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
     private LocalDateTime fecha;
     private String descripcion;
     private double monto;
