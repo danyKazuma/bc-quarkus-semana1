@@ -17,8 +17,9 @@ public class ClienteServiceImpl implements ClienteService {
         return cliente;
     }
 
-    @Transactional
-    public List<Cliente> listarCliente(){ return Cliente.listAll(); }
+    public List<Cliente> listarCliente(){
+        return Cliente.listAll();
+    }
 
     public Cliente buscarClientePorDocumento(String clienteDocumento){
         return Cliente.find("numeroDocumento",clienteDocumento).firstResult();
